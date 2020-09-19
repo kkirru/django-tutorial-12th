@@ -116,3 +116,24 @@ def index(request):
 - 템플릿 하드코딩 URL 제거
     - ```<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>```
     - --> ``` <li><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></li> ```
+
+# @ Part4
+## 4.1 write a minimal form
+- form 태그로 페이지에 form을 넣을 수 있다. 
+
+## 4.2 제너릭 뷰
+- URLconf 수정 
+```python
+path('<int:pk>/', views.DetailView.as_view(), name='detail'),
+``` 
+
+- views 수정
+```python
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by('-pub_date')[:5]
+```
