@@ -1,6 +1,6 @@
 # Django tutorial 12th
 
-## @ Part 1. 프로젝트 생
+## @ Part 1. 프로젝트 생성
 ### 1.1 Django version 확인
     pip list
     or
